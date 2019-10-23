@@ -15,7 +15,7 @@ Une user story est la formalisation d’un besoin associé à une fonctionnalit�
 Une user story comporte un ID, une description, un effort, (un statut ?), des tâches et/ou des users stories. Certaines user stories peuvent s’emboiter les unes dans les autres tant qu’elles ne sont pas découplables en simple tâche.
 * L’ID permet d’identifier facilement l’user story. Chiffre allant de 0 à 100 et s’implémente en fonction de l’ordre de création des user story.
 * La description doit être courte et doit avoir le format suivant : En tant que « fonction de la personne », je souhaiterais + verbe à l’impératif…
-* L’effort permet de prioriser les user stories entre elles  et peut prendre les valeurs suivantes 0,2,3,5,8,13.
+* L’effort permet de prioriser les user stories entre elles  et peut prendre les valeurs suivantes 0,1,3,5,8,13.
 Chaque user story peut passer individuellement à l’étape supérieure.
 Des comportements ou fonctionnalités que l’équipe a oublié de spécifier sont notées pour la prochaine itération.
 
