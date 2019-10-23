@@ -1,19 +1,19 @@
 # proto_gitus
 
-*** Setup du projet ***
+## Setup du projet
 
 - Vérifier que la variable d'environnement GOPATH indique le path vers "%USERPROFILE%\Go" ( suivre le tuto de https://www.java.com/fr/download/help/path.xml, pour regarder le contenu de la variable et la modifier si besoin)
 - Dans le dossier pointer par GOPATH, créer si ce n'est pas déjà fait le dossier "src"
 - Dans ce dossier, créer un autre dossier "github.com" puis dans ce dossier créer le dossier "la_ruche_thales"
 - Clôner le dépot dans ce dossier, soit dans : "%USERPROFILE%\Go\src\github.com\la_ruche_thales"
 
-*** Instalation BDD MySQL ***
+## Instalation BDD MySQL
 
 - Télécharger MySQL sur la page : https://dev.mysql.com/downloads/windows/installer/8.0.html
 - Suivre le tutoriel openCLassroom pour l'instalation : https://openclassrooms.com/fr/courses/1959476-administrez-vos-bases-de-donnees-avec-mysql/1959969-installez-mysql
 - Via le terminal Visual Studio Code, dans le répertoire pointé par la variable GOPATH exécuter la commande : "go get -u github.com/go-sql-driver/mysql"
 
-*** Instalation SQL Developer ***
+## Instalation SQL Developer
 
 SQL developer est une interface pour dialoguer avec les bases de données type SQL évitant l'utilisation du terminal
 L'outil n'est pas indispensable mais aide grandement pour la visualisation des tables et les informations des tables.
