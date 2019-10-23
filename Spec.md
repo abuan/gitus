@@ -5,12 +5,12 @@ Définition des objets
 ------------------------------
 
 
-#Projet 
+# Projet 
 Un projet est le point de départ. Un projet a un nom, un ID, un objectif, des noms de personnes qui lui sont associés, des user stories.
 
 Fonctions : créer, supprimer, modifier, afficher.
 
-#User story 
+# User story 
 Au lancement d’un projet, une réunion « kick off » a lieu entre le testeur, les développeurs, le product owner et l’expert métier. Après discussion entre l’équipe, des spécifications simples appelées User stories sont établies.
 Une user story est la formalisation d’un besoin associé à une fonctionnalité à réaliser. 
 Une user story comporte un ID, une description, un effort, (un statut ?), des tâches et/ou des users stories. Certaines user stories peuvent s’emboiter les unes dans les autres tant qu’elles ne sont pas découplables en simple tâche.
@@ -22,7 +22,7 @@ Des comportements ou fonctionnalités que l’équipe a oublié de spécifier so
 
 Fonctions : créer, supprimer, modifier, afficher.
 
-#Tâche
+# Tâche
 Une tâche une courte user story correspondant à exigence technique dérivée d’une user story. Elle permet au développeur de mettre de la solution technique.
 Une tâche comporte un ID, un nom, un effort, un ou plusieurs exécuteurs, un statut (TODO, IN PROGRESS, TO VERIFY).
 Une tâche ne peut pas contenir une autre tâche.
