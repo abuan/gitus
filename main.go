@@ -1,7 +1,7 @@
 package main
 
 import(
-	"github.com/la_ruche_thales/proto_gitus/bdd"
+	"github.com/abuan/proto_gitus/bdd"
 )
 
 //Variable globale contenant le logine pour la connection avec la BDD MySQL
