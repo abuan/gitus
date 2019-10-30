@@ -19,7 +19,7 @@ test: ## Run unittests
 	@go test -short ${PKG_LIST}
 
 build: dep ## Build the binary file
-	@go build -i -o build/ -v $(PKG)
+	@go build -i -o build/gitus.exe -v $(PKG)
  
 clean: ## Remove previous build
 	@del /f/q/s build
