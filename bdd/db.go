@@ -19,9 +19,9 @@ func InitDB(username string){
         log.Panic(err)
 	}
 	if db != nil{
-		log.Println("Connection Established with database gitus")
+		log.Println("Connection established with database gitus")
 	}else{
-		log.Println("ERROR Connection Established with database gitus")
+		log.Println("ERROR : Connection with database gitus failed")
 	}
 }
 
