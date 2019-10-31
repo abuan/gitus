@@ -46,3 +46,12 @@ La mise à jour de votre BDD se fait en deux étapes.
 - Réinstaller la BDD avec l'exécutable "setup_database.bat" dans le dossier "proto_gitus/bdd/install"
 
 Cette opération vous fera perdre toutes les données contenu dans votre base. Une fois le projet bien avancé la base sera peuplée lors de la création supprimant ce problème.
+
+## Utilisation du Makefile pour build et run des tests
+
+Le Makefile est un script regroupant un ensemble de commandes permettant de build notre projet. Pour utiliser le Makefile, c'est à dire lancer l'ensemble des commandes d'une étape, comme par exemple l'étape "build", il faut dans le terminal à la racine de notre projet taper "make build". La commande "make" est disponible directement sous Linux mais pas pour Windows, il faut télacharger le logiciel et l'installer.
+
+- Dans la partie "Download" prendre le premier "setup" : http://gnuwin32.sourceforge.net/packages/make.htm
+- Ajouter le chemin vers "make.exe" dans votre variable d'environnement "PATH"
+
+Si vous ne souhaitez pas utiliser le Makefile, vous pouvez simplement taper dans votre terminal les commandes décrites dans chaque étape en les adaptants légerment pour cibler les bonnes target.
