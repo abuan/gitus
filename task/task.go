@@ -8,6 +8,7 @@ type Task struct {
 	id          int
 }
 
+//NewTask : constructeur de la structure qui permet d'incrémenter au fur et a mesure
 func NewTask(description string) Task {
 	counterTask++
 	return Task{description, counterTask}
