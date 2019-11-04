@@ -20,4 +20,3 @@ func main() {
 	defer bdd.CloseDB()
 	// Début du code de l'application
 	bdd.TaskTestDB()
-}
