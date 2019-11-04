@@ -1,4 +1,4 @@
-package bdd
+package db
 
 import(
 	"log"
