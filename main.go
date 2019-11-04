@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/abuan/proto_gitus/bdd"
+	"github.com/abuan/proto_gitus/db"
 	_ "github.com/abuan/proto_gitus/task"
 	_ "github.com/abuan/proto_gitus/userstory"
 )
@@ -15,8 +15,9 @@ var login = "abuan"
 func main() {
 
 	//Connexion avec la BDD
-	bdd.InitDB(login)
+	db.InitDB(login)
 	//Ferme la connexion une fois la fonction "main" terminée
-	defer bdd.CloseDB()
+	defer db.CloseDB()
 	// Début du code de l'application
-	bdd.TaskTestDB()
+	db.TaskTestDB()
+}
