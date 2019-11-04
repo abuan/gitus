@@ -16,3 +16,5 @@ build
 coverage.txt
 
 .idea
+
+settings.json
