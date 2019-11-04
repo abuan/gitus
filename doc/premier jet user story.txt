@@ -1,0 +1,23 @@
+//Pour donner idée a ce a quoi vont ressembler nos classes
+
+package main
+
+import (
+	"fmt"
+)
+
+type UserStory struct {
+	id int
+	description string
+}
+
+func (u *UserStory) setDescription(s string){
+	u.description = s
+}
+
+func main() {
+	v := UserStory{1,"description1"}
+	fmt.Println(v)
+	v.setDescription("description2")
+	fmt.Println(v)
+}
