@@ -1,8 +1,7 @@
 package main
 
-import(
-	"github.com/abuan/proto_gitus/bdd"
-)
+import "fmt"
+import "task"
 
 //Variable globale contenant le logine pour la connection avec la BDD MySQL
 // Solution temporaire, il faudra penser à mettre au point un système de login avec un fichier de config
@@ -10,7 +9,13 @@ import(
 //Si vous avez un mdp il faut utiliser le format suivant : "username:password"
 var login = "abuan"
 
-func main(){
+func main() {
+/* 	u0 := newUserStory("description1")
+	fmt.Println(u0)
+	u0.addTache("description de la tache 1")
+	fmt.Println(u0)
+	u0.addUserStory("description user story ajouté")
+	fmt.Println(u0) */
 	
 	//Connexion avec la BDD
 	bdd.InitDB(login)

@@ -1,4 +1,4 @@
-package main
+package userstory
 
 var counterUserStory int
 
@@ -6,15 +6,15 @@ var counterUserStory int
 type UserStory struct {
 	description   string
 	id            int
-	listTache     []Tache
+	listTask      []Task
 	listUserStory []UserStory
 }
 
 func (u *UserStory) setDescription(s string) {
 	u.description = s
 }
-func (u *UserStory) addTache(s string) {
-	u.listTache = append(u.listTache, newTache(s))
+func (u *UserStory) addTask(s string) {
+	u.listTask = append(u.listTask, newTask(s))
 }
 func (u *UserStory) addUserStory(s string) {
 	u.listUserStory = append(u.listUserStory, newUserStory(s))
