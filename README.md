@@ -1,4 +1,4 @@
-# proto_gitus
+# Gitus
 
 ## Setup du projet
 
