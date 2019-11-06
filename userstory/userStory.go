@@ -1,7 +1,7 @@
 package userstory
 
 import (
-	"github.com/abuan/proto_gitus/task"
+	"github.com/abuan/gitus/task"
 )
 
 var counterUserStory int
