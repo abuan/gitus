@@ -1,4 +1,4 @@
-PROJECT_NAME := "proto_gitus"
+PROJECT_NAME := "gitus"
 PKG := "github.com/abuan/$(PROJECT_NAME)"
 PKG_LIST := $(shell go list ${PKG}/...)
  
