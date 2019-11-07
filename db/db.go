@@ -2,7 +2,6 @@ package db
 
 import(
 	"database/sql"
-	"log"
 	// Driver pour BDD MySQL : blank import --> https://www.calhoun.io/why-we-import-sql-drivers-with-the-blank-identifier/
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -11,18 +10,15 @@ import(
 var	db *sql.DB
 
 // InitDB : Ouvre une connexion avec la BDD avec 
-func InitDB(username string){
+func InitDB(username string)error{
 
 	var err error
-	db, err = sql.Open("mysql", username + "@tcp(127.0.0.1:3306)/gitus")
+	db, err = sql.Open("mysql", username + "@tcp(127.0.0.1:3306)/gitus?parseTime=true")
+	err = db.Ping()
 	if err != nil {
-        log.Panic(err)
+        return err
 	}
-	if db != nil{
-		log.Println("Connection established with database gitus")
-	}else{
-		log.Println("ERROR : Connection with database gitus failed")
-	}
+	return nil
 }
 
 // CloseDB : Ferme la connexion avec la BDD
