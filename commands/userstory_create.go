@@ -13,7 +13,7 @@ var (
 func runCreateUS(cmd *cobra.Command, args []string) error {
 	us := userstory.NewUserStory(args[0],"",addEffort)
 
-	// Effectation description
+	// Affectation description
 	var s string
 	for i := 1; i < len(args); i++ {
 		s += args[i] + " "
@@ -36,7 +36,7 @@ func runCreateUS(cmd *cobra.Command, args []string) error {
 var userStroryCreateCmd = &cobra.Command{
 	Use:     "create [<name>] <description>[...]",
 	Short:   "Create a new UserStory.",
-	Args:	 cobra.MinimumNArgs(1),
+	Args:	 cobra.MinimumNArgs(2),
 	RunE:    runCreateUS,
 }
 
