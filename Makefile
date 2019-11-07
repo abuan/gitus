@@ -2,7 +2,7 @@ PROJECT_NAME := "gitus"
 PKG := "github.com/abuan/$(PROJECT_NAME)"
 PKG_LIST := $(shell go list ${PKG}/...)
  
-.PHONY: all dep lint vet test build clean
+.PHONY: all dep lint vet test build clean update_mod
  
 all: build
 
@@ -20,6 +20,9 @@ test: ## Run unittests
 
 build: dep ## Build the binary file
 	@go build -i -o build/gitus.exe -v $(PKG)
+
+update_mod:
+	@go mod tidy
  
 clean: ## Remove previous build
 	@del /f/q/s build
