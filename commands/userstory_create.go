@@ -21,7 +21,7 @@ func runCreateUS(cmd *cobra.Command, args []string) error {
 	us.SetDescription(s)
 
 	//Sauvegarde en BDD
-	err := db.InitDB("abuan")
+	err := db.InitDB()
 	defer db.CloseDB()
 	if err != nil{
 		return err

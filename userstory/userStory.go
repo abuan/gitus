@@ -12,10 +12,10 @@ type UserStory struct {
 	Name		  string
 	Description   string
 	ID            int
-	listTask      []task.Task
-	listUserStory []UserStory
 	Effort 		  int
 	CreationDate  time.Time
+	ListTask      []task.Task
+	ListUserStory []UserStory
 }
 
 // SetDescription : Affecte une description à une UserStroy
@@ -23,10 +23,10 @@ func (u *UserStory) SetDescription(s string) {
 	u.Description = s
 }
 func (u *UserStory) addTask(s string) {
-	u.listTask = append(u.listTask, task.NewTask(s))
+	u.ListTask = append(u.ListTask, task.NewTask(s))
 }
 func (u *UserStory) addUserStory(name , description string, effort int) {
-	u.listUserStory = append(u.listUserStory, NewUserStory(name,description,effort))
+	u.ListUserStory = append(u.ListUserStory, NewUserStory(name,description,effort))
 }
 func (u *UserStory) getID() int {
 	return u.ID
@@ -54,5 +54,5 @@ func(u *UserStory) SetCreationDateNow(){
 func NewUserStory(name , description string, effort int) UserStory {
 	t := time.Now()
 	t.Format("2006-01-02 15:04:05")
-	return UserStory{name, description, 0, nil, nil, effort, t}
+	return UserStory{name, description, 0, effort, t, nil, nil}
 }
