@@ -6,11 +6,13 @@ import(
 	"strconv"
 )
 
+// Variable passé au flag de la commande Cobra stockant les valeurs attribuées
 var (
 	newEffort     int
 	newName		  string
 )
 
+//Fonction modifiant une userstory à partir des arguments de la CLI
 func runModifyUS(cmd *cobra.Command, args []string) error {
 	//Récupération de la US en BDD via ID
 	err := db.InitDB()
@@ -50,6 +52,7 @@ func runModifyUS(cmd *cobra.Command, args []string) error {
 	return nil
 }
 
+// Var Cobra décrivant une commande CLI modifiant une UserStory
 var userStroryModifyCmd = &cobra.Command{
 	Use:     "modify [<id>] <description>[...]",
 	Short:   "Modify a UserStory.",

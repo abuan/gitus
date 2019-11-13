@@ -6,10 +6,12 @@ import(
 	"github.com/abuan/gitus/db"
 )
 
+// Variable passé au flag --effort stockant la valeur de l'effort attribué
 var (
 	addEffort     int
 )
 
+//Fonction créant une userstory à partir des arguments de la CLI
 func runCreateUS(cmd *cobra.Command, args []string) error {
 	us := userstory.NewUserStory(args[0],"",addEffort)
 
@@ -33,6 +35,7 @@ func runCreateUS(cmd *cobra.Command, args []string) error {
 	return nil
 }
 
+// Var Cobra décrivant une commande CLI créant une UserStory
 var userStroryCreateCmd = &cobra.Command{
 	Use:     "create [<name>] <description>[...]",
 	Short:   "Create a new UserStory.",
