@@ -7,18 +7,20 @@ USE gitus;
 CREATE TABLE IF NOT EXISTS Projet (
 	id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
 	name VARCHAR(255) NOT NULL,
-	creation_date DATE,
-	description TEXT,
+	creation_date DATETIME,
+	descript TEXT,
 	us_list BLOB,
 	PRIMARY KEY (id)
 );
 
 -- Creation de la table user_story
-CREATE TABLE IF NOT EXISTS User_story(
+CREATE TABLE IF NOT EXISTS UserStory(
 	id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
 	name VARCHAR(255) NOT NULL,
-	creation_date DATE,
-	description TEXT,
+	creation_date DATETIME,
+	descript TEXT,
+	effort INTEGER UNSIGNED,
+	us_list BLOB,
 	tache_list BLOB,
 	PRIMARY KEY (id)
 );
@@ -27,8 +29,8 @@ CREATE TABLE IF NOT EXISTS User_story(
 CREATE TABLE IF NOT EXISTS Tache (
 	id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
 	name VARCHAR(255) NOT NULL,
-	creation_date DATE,
-	description TEXT,
+	creation_date DATETIME,
+	descript TEXT,
 	PRIMARY KEY (id)
 );
 
