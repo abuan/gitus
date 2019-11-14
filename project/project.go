@@ -3,41 +3,39 @@ package project
 import (
 	"fmt"
 	"time"
-
 	"github.com/abuan/gitus/userstory"
 )
-
-var counterProject int
 
 // Project : un projet contient contient un id,
 // un nom, une description, une liste de user stories
 type Project struct {
-	id            int
-	name          string
-	description   string
-	listUserStory []userstory.UserStory
-	creationDate  time.Time
+	ID            int
+	Name          string
+	Description   string
+	CreationDate  time.Time
+	ListUserStory []userstory.UserStory
 }
 
 //NewProject : constructeur de Projet, implémente automatiquement la fonction projet
 func NewProject(name, description string) Project {
-	counterProject++
-	return Project{counterProject, name, description, nil, time.Now()}
+	t := time.Now()
+	t.Format("2006-01-02 15:04:05")
+	return Project{0, name, description, nil, t}
 }
 
 //modifier le nom du projet
 func (p *Project) setName(s string) {
-	p.name = s
+	p.Name = s
 }
 
 //modifier la description
 func (p *Project) setDescription(s string) {
-	p.description = s
+	p.Description = s
 }
 
 //ajouter une us à un projet
 func (p *Project) addUserStory(s string) {
-	p.listUserStory = append(p.listUserStory, userstory.NewUserStory(s))
+	p.ListUserStory = append(p.ListUserStory, userstory.NewUserStory(s))
 }
 
 /*
