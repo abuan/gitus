@@ -55,7 +55,7 @@ func runModifyUS(cmd *cobra.Command, args []string) error {
 // Var Cobra décrivant une commande CLI modifiant une UserStory
 var userStroryModifyCmd = &cobra.Command{
 	Use:     "modify [<id>] <description>[...]",
-	Short:   "Modify a UserStory.",
+	Short:   "Modify a UserStory from its Id.",
 	Args:	 cobra.MinimumNArgs(1),
 	RunE:    runModifyUS,
 }
