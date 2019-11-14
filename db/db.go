@@ -10,10 +10,10 @@ import(
 var	db *sql.DB
 
 // InitDB : Ouvre une connexion avec la BDD avec 
-func InitDB(username string)error{
+func InitDB()error{
 
 	var err error
-	db, err = sql.Open("mysql", username + "@tcp(127.0.0.1:3306)/gitus?parseTime=true")
+	db, err = sql.Open("mysql", "abuan@tcp(127.0.0.1:3306)/gitus?parseTime=true")
 	err = db.Ping()
 	if err != nil {
         return err
