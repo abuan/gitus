@@ -20,7 +20,7 @@ type Project struct {
 func NewProject(name, description string) Project {
 	t := time.Now()
 	t.Format("2006-01-02 15:04:05")
-	return Project{0, name, description, nil, t}
+	return Project{0, name, description, t,nil}
 }
 
 //modifier le nom du projet
@@ -34,8 +34,8 @@ func (p *Project) setDescription(s string) {
 }
 
 //ajouter une us à un projet
-func (p *Project) addUserStory(s string) {
-	p.ListUserStory = append(p.ListUserStory, userstory.NewUserStory(s))
+func (p *Project) addUserStory(u userstory.UserStory) {
+	p.ListUserStory = append(p.ListUserStory, u)
 }
 
 /*
@@ -60,7 +60,7 @@ func (p *Project) deleteUserStory(u userstory.UserStory) {
 //DisplayProject : afficher un projet entier
 func (p *Project) DisplayProject() {
 
-	fmt.Printf("The project %v is %v\n %v\n Created the %v\n", p.id, p.name, p.description, p.creationDate.Format(time.ANSIC))
+	fmt.Printf("The project %v is %v\n %v\n Created the %v\n", p.ID, p.Name, p.Description, p.CreationDate.Format(time.ANSIC))
 }
 
 func (p *Project) getUserStories() {}
