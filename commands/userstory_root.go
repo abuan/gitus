@@ -5,6 +5,7 @@ import(
 	"github.com/spf13/cobra"
 )
 
+// Var Cobra décrivant une commande CLI de base pour les actions liées aux userStory
 var userStroryCmd = &cobra.Command{
 	Use:     "userstory",
 	Short:   "Root command for user story",

@@ -33,8 +33,8 @@ func (p *Project) setDescription(s string) {
 	p.Description = s
 }
 
-//ajouter une us à un projet
-func (p *Project) addUserStory(u userstory.UserStory) {
+//AddUserStory : ajoute une us à un projet
+func (p *Project) AddUserStory(u userstory.UserStory) {
 	p.ListUserStory = append(p.ListUserStory, u)
 }
 
