@@ -61,9 +61,10 @@ func NewUserStory(name , description string, effort int) UserStory {
 
 // Display : Affiche le contenu de la US sur le terminal
 func(u *UserStory)Display(){
-	fmt.Println("**************************************** User Story ****************************************")
+	fmt.Println("\n**************************************** User Story ****************************************")
 	fmt.Println("\tId:\t\t"+strconv.Itoa(u.ID))
 	fmt.Println("\tName :\t\t"+u.Name)
 	fmt.Println("\tEffort:\t\t"+strconv.Itoa(u.Effort))
+	fmt.Println("\tCreation Date :\t"+u.CreationDate.Format("2006-01-02 15:04:05"))
 	fmt.Println("\tDescription :\t"+u.Description)
 }
