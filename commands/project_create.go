@@ -10,13 +10,15 @@ import(
 	"strconv"
 )
 
-// Variable passé au flag 
+// Variable passée au flag 
 var (
+	// COntient la liste des US à lier avec le projet
 	usList			[]int
 )
 
 //Fonction créant une userstory à partir des arguments de la CLI
 func runCreateProject(cmd *cobra.Command, args []string) error {
+	//Création du projet
 	p := project.NewProject(args[0],"")
 
 	// Affectation description
@@ -58,6 +60,7 @@ func runCreateProject(cmd *cobra.Command, args []string) error {
 		return err
 	}
 	//Ajoute le liens entre les US et le projet
+	// Ce lien est fait via une table de jointure. Voir la méthodologie "Many to Many" liée à la gestion de BDD
 	err = db.TaskLinkUsToProject(usList,projectID)
 	if err != nil{
 		return err
@@ -79,6 +82,7 @@ func init() {
 
 	projectCreateCmd.Flags().SortFlags = false
 
+	//Ajout du flag permettant le liage de US
 	projectCreateCmd.Flags().IntSliceVarP(&usList, "userStories", "u", nil,
 		"Provide a list of User Story's ID to be linked to the project. Example : 1,3,8",
 	)
