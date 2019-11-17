@@ -99,3 +99,30 @@ func TaskGetProject(id int)(*project.Project,[]int,error){
 
 	return &p,ids,nil
 }
+
+// TaskGetAllProjects : Récupère l'ensemble des projets Gitus
+func TaskGetAllProjects()([]*project.Project,error){
+	// Récupère les infos du projet dans la BDD
+	stmt, err := db.Prepare("SELECT id,name,descript,creation_date FROM Project")
+	if err != nil{
+		return nil,err
+		}
+	defer stmt.Close()
+
+	rows, err := stmt.Query()
+	if err != nil{
+		return nil,err
+	}
+
+	var projectList [] *project.Project
+
+	for rows.Next(){
+		var p project.Project
+		err = rows.Scan(&p.ID,&p.Name,&p.Description,&p.CreationDate)
+		if err != nil{
+			return nil,err
+		}
+		projectList = append(projectList,&p)
+	}
+	return projectList,nil
+}
