@@ -70,7 +70,6 @@ func (p *Project) Display(usList []int) {
 		for _,value := range usList{
 			fmt.Print(strconv.Itoa(value)+" / ")
 		}
-		fmt.Println()
 	}else{
 		fmt.Println("No User Story link to this project")
 	}
