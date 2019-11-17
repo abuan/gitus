@@ -1,43 +1,9 @@
 package db
 
 import(
-	"log"
-	"strconv"
 	"strings"
 	"github.com/abuan/gitus/userstory"
-	"github.com/abuan/gitus/project"
 )
-
-/*Ce fichier contient l'ensemble des taches liées à la base de données.
-* Pour chaque interraction spécifique avec la base comme par exemple récupérer l'ensemble des
-* projets on va créer une fonction dédiée, dans notre cas "TaskGetProjects", contenant l'ensemble 
-* des instructions SQL permettant des récupérer ces informations.
-* Lire le tutoriel suivant pour les différentes indications sur comment réaliser une Query et
-* quel type de Query utiliser : http://go-database-sql.org/index.html
-*/
-
-// TaskTestDB : Fonction de test pour la BDD
-//Sert d'exemple dans un premier temps à supprimer par la suite
-func TaskTestDB(){
-	err := db.Ping()
-	if err != nil{
-		// Query d'insertion/mise à jour de données, on utilise les fonctions Prepare puis Exec
-		statement, _ := db.Prepare("INSERT INTO projet(name) VALUES(?)")
-		statement.Exec("Test")
-		// Query de sélection de plusieurs éléments, on récupère un "Rows" contenant tous les résultat, on utilise la fonction Query
-		rows, _ := db.Query("SELECT id, name FROM projet")
-		var id int
-		var name string
-		// On parcourt l'ensemble des résultat de du row puis on les traite
-		for rows.Next() {
-			rows.Scan(&id, &name)
-			log.Println(strconv.Itoa(id) + " : " + name)
-		}
-	}else{
-		log.Println("nil db")
-	}
-	
-}
 
 // TaskAddUserStory : Ajoute une nouvelle UserStory à la BDD
 func TaskAddUserStory(u *userstory.UserStory)error{
@@ -152,32 +118,7 @@ func TaskGetAllUserStoryID()([]int,error){
 	return ids,err
 }
 
-// TaskAddProject : Ajoute un nouveau projet à la BDD
-func TaskAddProject(p *project.Project)(int,error){
-	// Insert le projet dans la BDD
-	stmt, err := db.Prepare("INSERT INTO Project(name,descript,creation_date) VALUES(?,?,?)")
-	if err != nil{
-		return 0,err
-	}
-	defer stmt.Close()
-	_, err = stmt.Exec(p.Name,p.Description,p.CreationDate)
-	if err != nil{
-		return 0,err
-	}
 
-	// Récupération de l'ID généré par Mysql
-	stmt, err = db.Prepare("SELECT id FROM Project WHERE Project.name = ? AND Project.descript = ?")
-	if err != nil{
-		return 0,err
-	}
-	row := stmt.QueryRow(p.Name,p.Description)
-	var id int
-	err =row.Scan(&id)
-	if err != nil{
-		return 0,err
-	}
-	return id,nil
-}
 
 // TaskLinkUsToProject : Lie des US story à un projet
 func TaskLinkUsToProject(usList []int, projectID int)error{
@@ -203,3 +144,31 @@ func TaskLinkUsToProject(usList []int, projectID int)error{
 	}
 	return nil
 }
+
+// TaskDeleteUserStory : Supprime une UserStory dans la BDD à partir de son ID
+func TaskDeleteUserStory(id int) error{
+	//Suppression des liens dela  US vers les projets
+	stmt, err := db.Prepare("DELETE FROM Project_structure WHERE userstory_id = ?")
+	if err != nil{
+		return err
+	}
+	defer stmt.Close()
+	
+	_,err = stmt.Exec(id)
+	if err != nil{
+		return err
+	}	
+	
+	//Suppression de la US
+	stmt, err = db.Prepare("DELETE FROM UserStory WHERE id = ?")
+	if err != nil{
+		return err
+	}
+	_,err = stmt.Exec(id)
+	if err != nil{
+		return err
+	}
+	
+	return nil
+}
+
