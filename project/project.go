@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"time"
 	"github.com/abuan/gitus/userstory"
+	"strconv"
 )
 
 // Project : un projet contient contient un id,
@@ -57,10 +58,22 @@ func (p *Project) deleteUserStory(u userstory.UserStory) {
 	p.listUserStory = p.listUserStory[:len(p.listUserStory)-1]
 } */
 
-//DisplayProject : afficher un projet entier
-func (p *Project) DisplayProject() {
-
-	fmt.Printf("The project %v is %v\n %v\n Created the %v\n", p.ID, p.Name, p.Description, p.CreationDate.Format(time.ANSIC))
+//Display : afficher un projet entier
+func (p *Project) Display(usList []int) {
+	fmt.Println("\n**************************************** Project ****************************************")
+	fmt.Println("\tId:\t\t"+strconv.Itoa(p.ID))
+	fmt.Println("\tName :\t\t"+p.Name)
+	fmt.Println("\tDescription :\t"+p.Description)
+	fmt.Println("\tCreation Date :\t"+p.CreationDate.Format("2006-01-02 15:04:05")+"\n")
+	fmt.Print("\tLinked User Story (id) :\t")
+	if len(usList)>0{
+		for _,value := range usList{
+			fmt.Print(strconv.Itoa(value)+" / ")
+		}
+		fmt.Println()
+	}else{
+		fmt.Println("No User Story link to this project")
+	}
 }
 
 func (p *Project) getUserStories() {}
