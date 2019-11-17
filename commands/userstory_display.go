@@ -29,7 +29,7 @@ func runDisplayUS(cmd *cobra.Command, args []string) error{
 // Var Cobra décrivant une commande CLI modifiant une UserStory
 var userStroryDisplayCmd = &cobra.Command{
 	Use:     "display [<id>]",
-	Short:   "Display a UserStory from its Id.",
+	Short:   "Display a UserStory content from its Id.",
 	Args:	 cobra.MinimumNArgs(1),
 	RunE:    runDisplayUS,
 }
