@@ -35,35 +35,41 @@ func runCreateProject(cmd *cobra.Command, args []string) error {
 	if err != nil{
 		return err
 	}
+
 	//Vérification des US passées en argument
-	//Suppression des doublons
-	usList = utils.RemoveDuplicates(usList)
+	usToLink := len(usList) > 0
+	if usToLink{
+		//Suppression des doublons
+		usList = utils.RemoveDuplicates(usList)
 
-	//Sélection de tous les IDS des US
-	ids,err := db.TaskGetAllUserStoryID()
-	if err != nil{
-		return err
-	}
-
-	// Vérifie si les ids passés en argument éxistent en BDD
-	exists,unknownValues :=utils.Contains(ids,usList)
-	//Si des valeurs d'IDs n'éxistent pas alors on informe l'utilisateur
-	if !exists{
-		for _,val := range unknownValues{
-			fmt.Print(strconv.Itoa(val) + " ; ")
+		//Sélection de tous les IDS des US
+		ids,err := db.TaskGetAllUserStoryID()
+		if err != nil{
+			return err
 		}
-		return errors.New("Les User Story liées aux IDs Prédent n'éxistent pas")
+		// Vérifie si les ids passés en argument éxistent en BDD
+		exists,unknownValues :=utils.Contains(ids,usList)
+		//Si des valeurs d'IDs n'éxistent pas alors on informe l'utilisateur
+		if !exists{
+			for _,val := range unknownValues{
+				fmt.Print(strconv.Itoa(val) + " / ")
+			}
+			return errors.New("Les User Story liées aux IDs précédents n'éxistent pas")
+		}
 	}
+
 	//Sauvegarde en BDD du projet
 	projectID, err := db.TaskAddProject(&p)
 	if err != nil{
 		return err
 	}
-	//Ajoute le liens entre les US et le projet
-	// Ce lien est fait via une table de jointure. Voir la méthodologie "Many to Many" liée à la gestion de BDD
-	err = db.TaskLinkUsToProject(usList,projectID)
-	if err != nil{
-		return err
+	if usToLink{
+		//Ajoute le liens entre les US et le projet
+		// Ce lien est fait via une table de jointure. Voir la méthodologie "Many to Many" liée à la gestion de BDD
+		err = db.TaskLinkUsToProject(usList,projectID)
+		if err != nil{
+			return err
+		}
 	}
 
 	return nil
