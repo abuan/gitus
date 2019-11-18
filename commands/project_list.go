@@ -30,7 +30,7 @@ func runListProjects(cmd *cobra.Command, args []string) error{
 	return nil
 }
 
-// Var Cobra décrivant une commande CLI affichant la composition d'un projet
+// Var Cobra décrivant une commande CLI affichant la liste des projets Gitus
 var projectListCmd = &cobra.Command{
 	Use:     "list",
 	Short:   "Display a list of all the Gitus Project.",

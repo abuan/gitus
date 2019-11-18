@@ -53,7 +53,7 @@ func runModifyUS(cmd *cobra.Command, args []string) error {
 }
 
 // Var Cobra décrivant une commande CLI modifiant une UserStory
-var userStroryModifyCmd = &cobra.Command{
+var userStoryModifyCmd = &cobra.Command{
 	Use:     "modify [<id>] <description>[...]",
 	Short:   "Modify a UserStory from its Id.",
 	Args:	 cobra.MinimumNArgs(1),
@@ -61,14 +61,14 @@ var userStroryModifyCmd = &cobra.Command{
 }
 
 func init() {
-	userStroryCmd.AddCommand(userStroryModifyCmd)
+	userStoryCmd.AddCommand(userStoryModifyCmd)
 
-	userStroryModifyCmd.Flags().SortFlags = false
+	userStoryModifyCmd.Flags().SortFlags = false
 
-	userStroryModifyCmd.Flags().IntVarP(&newEffort, "effort", "e", -1,
+	userStoryModifyCmd.Flags().IntVarP(&newEffort, "effort", "e", -1,
 		"Provide a new effort value to the User Story",
 	)
-	userStroryModifyCmd.Flags().StringVarP(&newName, "name", "n", "",
+	userStoryModifyCmd.Flags().StringVarP(&newName, "name", "n", "",
 		"Provide a new name to the User Story",
 	)
 }

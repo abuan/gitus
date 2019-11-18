@@ -6,7 +6,7 @@ import(
 )
 
 // Var Cobra décrivant une commande CLI de base pour les actions liées aux userStory
-var userStroryCmd = &cobra.Command{
+var userStoryCmd = &cobra.Command{
 	Use:     "userstory",
 	Short:   "Root command for user story",
 	Long: 	`Root command for user story. 
@@ -18,5 +18,5 @@ var userStroryCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(userStroryCmd)
+	rootCmd.AddCommand(userStoryCmd)
 }

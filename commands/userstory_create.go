@@ -36,7 +36,7 @@ func runCreateUS(cmd *cobra.Command, args []string) error {
 }
 
 // Var Cobra décrivant une commande CLI créant une UserStory
-var userStroryCreateCmd = &cobra.Command{
+var userStoryCreateCmd = &cobra.Command{
 	Use:     "create [<name>] <description>[...]",
 	Short:   "Create a new UserStory.",
 	Args:	 cobra.MinimumNArgs(2),
@@ -44,11 +44,11 @@ var userStroryCreateCmd = &cobra.Command{
 }
 
 func init() {
-	userStroryCmd.AddCommand(userStroryCreateCmd)
+	userStoryCmd.AddCommand(userStoryCreateCmd)
 
-	userStroryCreateCmd.Flags().SortFlags = false
+	userStoryCreateCmd.Flags().SortFlags = false
 
-	userStroryCreateCmd.Flags().IntVarP(&addEffort, "effort", "e", 0,
+	userStoryCreateCmd.Flags().IntVarP(&addEffort, "effort", "e", 0,
 		"Provide an effort to the User Story",
 	)
 }

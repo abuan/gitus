@@ -23,7 +23,7 @@ func runDeleteUS(cmd *cobra.Command, args []string) error {
 }
 
 // Var Cobra décrivant une commande CLI supprimant une UserStory
-var userStroryDeleteCmd = &cobra.Command{
+var userStoryDeleteCmd = &cobra.Command{
 	Use:     "delete [<id>]",
 	Short:   "Delete a UserStory from its Id.",
 	Args:	 cobra.MinimumNArgs(1),
@@ -31,5 +31,5 @@ var userStroryDeleteCmd = &cobra.Command{
 }
 
 func init() {
-	userStroryCmd.AddCommand(userStroryDeleteCmd)
+	userStoryCmd.AddCommand(userStoryDeleteCmd)
 }
