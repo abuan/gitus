@@ -172,3 +172,29 @@ func TaskDeleteUserStory(id int) error{
 	return nil
 }
 
+// TaskGetAllUserStory : Récupère l'ensemble des projets Gitus
+func TaskGetAllUserStory()([]*userstory.UserStory,error){
+	// Récupère les infos des US dans la BDD
+	stmt, err := db.Prepare("SELECT id,name,descript,effort,creation_date FROM UserStory")
+	if err != nil{
+		return nil,err
+		}
+	defer stmt.Close()
+
+	rows, err := stmt.Query()
+	if err != nil{
+		return nil,err
+	}
+
+	var usList [] *userstory.UserStory
+
+	for rows.Next(){
+		var u userstory.UserStory
+		err = rows.Scan(&u.ID,&u.Name,&u.Description,&u.Effort,&u.CreationDate)
+		if err != nil{
+			return nil,err
+		}
+		usList = append(usList,&u)
+	}
+	return usList,nil
+}
