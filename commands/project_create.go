@@ -54,7 +54,7 @@ func runCreateProject(cmd *cobra.Command, args []string) error {
 			for _,val := range unknownValues{
 				fmt.Print(strconv.Itoa(val) + " / ")
 			}
-			return errors.New("Les User Story liées aux IDs précédents n'éxistent pas")
+			return errors.New("Les User Story liées aux IDs précédents n'existent pas")
 		}
 	}
 
