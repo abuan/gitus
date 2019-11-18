@@ -43,11 +43,12 @@ CREATE TABLE IF NOT EXISTS Project_structure (
 );
 
 -- Ajoute des Items dans les tables
-INSERT INTO Project VALUES (1,"Default_Project",NOW(),"Projet par défaut créé automatiquement");
-INSERT INTO UserStory VALUES (1,"Default_US1",NOW(),"User Story par défaut créée automatiquement",0,NULL,NULL);
-INSERT INTO UserStory VALUES (2,"Default_US2",NOW(),"User Story par défaut créée automatiquement",0,NULL,NULL);
-INSERT INTO UserStory VALUES (3,"Default_US3",NOW(),"User Story par défaut créée automatiquement",0,NULL,NULL);
-INSERT INTO Project_structure VALUES(1,1),(1,2),(1,3);
+INSERT INTO Project VALUES (1,"Default_Project1",NOW(),"Projet par defaut utilise pour les tests");
+INSERT INTO Project VALUES (2,"Default_Project2",NOW(),"Projet par defaut utilise pour les tests");
+INSERT INTO UserStory VALUES (1,"Default_US1",NOW(),"User Story par defaut utilise pour les tests",5,NULL,NULL);
+INSERT INTO UserStory VALUES (2,"Default_US2",NOW(),"User Story par defaut utilise pour les tests",8,NULL,NULL);
+INSERT INTO UserStory VALUES (3,"Default_US3",NOW(),"User Story par defaut utilise pour les tests",13,NULL,NULL);
+INSERT INTO Project_structure VALUES(1,1),(1,2),(1,3),(2,1),(2,3);
 
 -- Affichage des BDD disppnibles
 SHOW DATABASES;
