@@ -9,6 +9,7 @@ import (
 // Variable passé au flag --effort stockant la valeur de l'effort attribué
 var (
 	addEffort int
+	//flag autheur en global, qui est aussi le même utiliser pour les project
 	addAuthor string
 )
 
@@ -55,4 +56,5 @@ func init() {
 	userStoryCreateCmd.Flags().StringVarP(&addAuthor, "author", "a", "unknow",
 		"Provide an author to the User Story",
 	)
+
 }
