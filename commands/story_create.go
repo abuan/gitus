@@ -1,19 +1,19 @@
 package commands
 
-import(
+import (
+	"github.com/abuan/gitus/db"
 	"github.com/abuan/gitus/userstory"
 	"github.com/spf13/cobra"
-	"github.com/abuan/gitus/db"
 )
 
 // Variable passé au flag --effort stockant la valeur de l'effort attribué
 var (
-	addEffort     int
+	addEffort int
 )
 
 //Fonction créant une userstory à partir des arguments de la CLI
 func runCreateUS(cmd *cobra.Command, args []string) error {
-	us := userstory.NewUserStory(args[0],"",addEffort)
+	us := userstory.NewUserStory(args[0], "", addEffort)
 
 	// Affectation description
 	var s string
@@ -22,14 +22,8 @@ func runCreateUS(cmd *cobra.Command, args []string) error {
 	}
 	us.SetDescription(s)
 
-	//Sauvegarde en BDD
-	err := db.InitDB()
-	defer db.CloseDB()
-	if err != nil{
-		return err
-	}
-	err = db.TaskAddUserStory(&us)
-	if err != nil{
+	err := db.TaskAddUserStory(&us)
+	if err != nil {
 		return err
 	}
 	return nil
@@ -37,10 +31,12 @@ func runCreateUS(cmd *cobra.Command, args []string) error {
 
 // Var Cobra décrivant une commande CLI créant une UserStory
 var userStoryCreateCmd = &cobra.Command{
-	Use:     "create [<name>] <description>[...]",
-	Short:   "Create a new UserStory.",
-	Args:	 cobra.MinimumNArgs(2),
-	RunE:    runCreateUS,
+	Use:      "create [<name>] <description>[...]",
+	Short:    "Create a new UserStory.",
+	Args:     cobra.MinimumNArgs(2),
+	RunE:     runCreateUS,
+	PreRunE:  connexionForData,
+	PostRunE: deconnexionForData,
 }
 
 func init() {

@@ -1,33 +1,29 @@
 package commands
 
-import(
-	"github.com/spf13/cobra"
+import (
 	"github.com/abuan/gitus/db"
+	"github.com/spf13/cobra"
 	"strconv"
 )
 
 // Variable passé au flag de la commande Cobra stockant les valeurs attribuées
 var (
-	newEffort     int
-	newName		  string
+	newEffort int
+	newName   string
 )
 
 //Fonction modifiant une userstory à partir des arguments de la CLI
 func runModifyUS(cmd *cobra.Command, args []string) error {
 	//Récupération de la US en BDD via ID
-	err := db.InitDB()
-	defer db.CloseDB()
-	if err != nil{
-		return err
-	}
-	id,_ := strconv.Atoi(args[0])
-	u,err:= db.TaskGetUserStory(id);
-	if err != nil{
+
+	id, _ := strconv.Atoi(args[0])
+	u, err := db.TaskGetUserStory(id)
+	if err != nil {
 		return err
 	}
 
 	// Affectation description
-	if len(args)>1 {
+	if len(args) > 1 {
 		var s string
 		for i := 1; i < len(args); i++ {
 			s += args[i] + " "
@@ -36,7 +32,7 @@ func runModifyUS(cmd *cobra.Command, args []string) error {
 	}
 
 	// Mise à jour des champs selon flags
-	if newEffort != -1{
+	if newEffort != -1 {
 		u.Effort = newEffort
 	}
 	if newName != "" {
@@ -45,7 +41,7 @@ func runModifyUS(cmd *cobra.Command, args []string) error {
 
 	//Update en BDD de la US
 	err = db.TaskUpdateUserStory(u)
-	if err != nil{
+	if err != nil {
 		return err
 	}
 
@@ -54,10 +50,12 @@ func runModifyUS(cmd *cobra.Command, args []string) error {
 
 // Var Cobra décrivant une commande CLI modifiant une UserStory
 var userStoryModifyCmd = &cobra.Command{
-	Use:     "modify [<id>] <description>[...]",
-	Short:   "Modify a UserStory from its Id.",
-	Args:	 cobra.MinimumNArgs(1),
-	RunE:    runModifyUS,
+	Use:      "modify [<id>] <description>[...]",
+	Short:    "Modify a UserStory from its Id.",
+	Args:     cobra.MinimumNArgs(1),
+	RunE:     runModifyUS,
+	PreRunE:  connexionForData,
+	PostRunE: deconnexionForData,
 }
 
 func init() {

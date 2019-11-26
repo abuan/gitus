@@ -1,22 +1,18 @@
 package commands
 
-import(
-	"github.com/spf13/cobra"
+import (
 	"github.com/abuan/gitus/db"
+	"github.com/spf13/cobra"
 	"strconv"
 )
 
 //Fonction supprimant une userstory à partir de l'ID passé dans la CLI
 func runDeleteUS(cmd *cobra.Command, args []string) error {
 	//Suppression de la US en BDD via ID
-	err := db.InitDB()
-	defer db.CloseDB()
-	if err != nil{
-		return err
-	}
-	id,_ := strconv.Atoi(args[0])
-	err = db.TaskDeleteUserStory(id);
-	if err != nil{
+
+	id, _ := strconv.Atoi(args[0])
+	err := db.TaskDeleteUserStory(id)
+	if err != nil {
 		return err
 	}
 	return nil
@@ -24,10 +20,12 @@ func runDeleteUS(cmd *cobra.Command, args []string) error {
 
 // Var Cobra décrivant une commande CLI supprimant une UserStory
 var userStoryDeleteCmd = &cobra.Command{
-	Use:     "delete [<id>]",
-	Short:   "Delete a UserStory from its Id.",
-	Args:	 cobra.MinimumNArgs(1),
-	RunE:    runDeleteUS,
+	Use:      "delete [<id>]",
+	Short:    "Delete a UserStory from its Id.",
+	Args:     cobra.MinimumNArgs(1),
+	RunE:     runDeleteUS,
+	PreRunE:  connexionForData,
+	PostRunE: deconnexionForData,
 }
 
 func init() {
