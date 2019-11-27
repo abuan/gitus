@@ -7,12 +7,12 @@ import(
 
 // TaskAddUserStory : Ajoute une nouvelle UserStory à la BDD
 func TaskAddUserStory(u *userstory.UserStory)error{
-	stmt, err := db.Prepare("INSERT INTO UserStory(name,descript,effort,creation_date) VALUES(?,?,?,?)")
+	stmt, err := db.Prepare("INSERT INTO UserStory(title,descript,effort,creation_date) VALUES(?,?,?,?)")
 	if err != nil{
 		return err
 		}
 	defer stmt.Close()
-	_, err = stmt.Exec(u.Name,u.Description,u.Effort,u.CreationDate)
+	_, err = stmt.Exec(u.Title,u.Description,u.Effort,u.CreationDate)
 	if err != nil{
 		return err
 	}
@@ -22,7 +22,7 @@ func TaskAddUserStory(u *userstory.UserStory)error{
 // TaskGetUserStory : Récupère une UserStory dans la BDD à partir de son ID
 func TaskGetUserStory(id int)(*userstory.UserStory,error){
 	// Query de sélection d'un élément, on récupère un "Row" contenant tous les résultat, on utilise la fonction QueryRow
-	stmt, err := db.Prepare("SELECT name,descript,creation_date,effort FROM UserStory WHERE id = ?")
+	stmt, err := db.Prepare("SELECT title,descript,creation_date,effort FROM UserStory WHERE id = ?")
 	if err != nil{
 		return nil,err
 		}
@@ -31,7 +31,7 @@ func TaskGetUserStory(id int)(*userstory.UserStory,error){
 	//Utilisation des Keys de la structure pour indiquer le champs que l'on affecte
 	u:= userstory.UserStory{ID:id}
 	//Scan des résultat du Row
-	err = row.Scan(&u.Name, &u.Description,&u.CreationDate,&u.Effort)
+	err = row.Scan(&u.Title, &u.Description,&u.CreationDate,&u.Effort)
 	if err != nil{
 		return nil,err
 	}
@@ -40,12 +40,12 @@ func TaskGetUserStory(id int)(*userstory.UserStory,error){
 
 // TaskUpdateUserStory : Met à jour une UserStory en BDD
 func TaskUpdateUserStory(u*userstory.UserStory)error{
-	stmt, err := db.Prepare("UPDATE UserStory SET name = ?,descript = ?,effort = ? WHERE id = ?")
+	stmt, err := db.Prepare("UPDATE UserStory SET descript = ?,effort = ? WHERE id = ?")
 	if err != nil{
 		return err
 		}
 	defer stmt.Close()
-	_, err = stmt.Exec(u.Name,u.Description,u.Effort,u.ID)
+	_, err = stmt.Exec(u.Description,u.Effort,u.ID)
 	if err != nil{
 		return err
 	}
@@ -63,7 +63,7 @@ func TaskGetUserStoryList(ids []int)([]*userstory.UserStory,error){
 	//Création de la slice des US
 	usList := make([]*userstory.UserStory,len(ids))
 	// Preparation de la query pour récupérer toutes les US matchant les ids en param
-	stmt, err := db.Prepare("SELECT name,descript,creation_date,effort FROM UserStory WHERE id in(?"+ strings.Repeat(",?",len(args)-1) + ")")
+	stmt, err := db.Prepare("SELECT title,descript,creation_date,effort FROM UserStory WHERE id in(?"+ strings.Repeat(",?",len(args)-1) + ")")
 	if err != nil{
 		return nil,err
 		}
@@ -81,7 +81,7 @@ func TaskGetUserStoryList(ids []int)([]*userstory.UserStory,error){
 		//Création d'une US
 		u:= userstory.UserStory{ID:ids[i]}
 		//Scan des résultat du Row
-		err = rows.Scan(&u.Name, &u.Description,&u.CreationDate,&u.Effort)
+		err = rows.Scan(&u.Title, &u.Description,&u.CreationDate,&u.Effort)
 		if err != nil{
 			return nil,err
 		}
@@ -175,7 +175,7 @@ func TaskDeleteUserStory(id int) error{
 // TaskGetAllUserStory : Récupère l'ensemble des projets Gitus
 func TaskGetAllUserStory()([]*userstory.UserStory,error){
 	// Récupère les infos des US dans la BDD
-	stmt, err := db.Prepare("SELECT id,name,descript,effort,creation_date FROM UserStory")
+	stmt, err := db.Prepare("SELECT id,title,descript,effort,creation_date FROM UserStory")
 	if err != nil{
 		return nil,err
 		}
@@ -190,7 +190,7 @@ func TaskGetAllUserStory()([]*userstory.UserStory,error){
 
 	for rows.Next(){
 		var u userstory.UserStory
-		err = rows.Scan(&u.ID,&u.Name,&u.Description,&u.Effort,&u.CreationDate)
+		err = rows.Scan(&u.ID,&u.Title,&u.Description,&u.Effort,&u.CreationDate)
 		if err != nil{
 			return nil,err
 		}
