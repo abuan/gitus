@@ -3,8 +3,8 @@ package userstory
 import (
 	"fmt"
 	"strconv"
+	"github.com/docker/docker/pkg/namesgenerator"
 	"time"
-
 	"github.com/abuan/gitus/task"
 )
 
@@ -12,7 +12,7 @@ var counterUserStory int
 
 // UserStory : le type de base de notre projet
 type UserStory struct {
-	Name          string
+	Title		  string
 	Description   string
 	Author        string
 	ID            int
@@ -29,8 +29,8 @@ func (u *UserStory) SetDescription(s string) {
 func (u *UserStory) addTask(s string) {
 	u.ListTask = append(u.ListTask, task.NewTask(s))
 }
-func (u *UserStory) addUserStory(name, description, author string, effort int) {
-	u.ListUserStory = append(u.ListUserStory, NewUserStory(name, description, author, effort))
+func (u *UserStory) addUserStory(description, author string, effort int) {
+	u.ListUserStory = append(u.ListUserStory, NewUserStory(description, author, effort))
 }
 func (u *UserStory) getID() int {
 	return u.ID
@@ -55,17 +55,18 @@ func (u *UserStory) SetCreationDateNow() {
 }
 
 //NewUserStory : constructeur structure UserStory, incrémente l'id automatiquement
-func NewUserStory(name, description, author string, effort int) UserStory {
+func NewUserStory(description, author string, effort int) UserStory {
 	t := time.Now()
 	t.Format("2006-01-02 15:04:05")
-	return UserStory{name, description, author, 0, effort, t, nil, nil}
+	title := namesgenerator.GetRandomName(0);
+	return UserStory{title, description, author, 0, effort, t, nil, nil}
 }
 
 // Display : Affiche le contenu de la US sur le terminal
 func (u *UserStory) Display() {
 	fmt.Println("\n**************************************** User Story ****************************************")
 	fmt.Println("\tId:\t\t" + strconv.Itoa(u.ID))
-	fmt.Println("\tName :\t\t" + u.Name)
+	fmt.Println("\tTitle :\t\t"+u.Title)
 	fmt.Println("\tEffort:\t\t" + strconv.Itoa(u.Effort))
 	fmt.Println("\tAuthor:\t\t" + u.Author)
 	fmt.Println("\tCreation Date :\t" + u.CreationDate.Format("2006-01-02 15:04:05"))

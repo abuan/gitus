@@ -9,7 +9,7 @@ import(
 // Variable passé au flag de la commande Cobra stockant les valeurs attribuées
 var (
 	newEffort     int
-	newName		  string
+	newStoryDescription string
 )
 
 //Fonction modifiant une userstory à partir des arguments de la CLI
@@ -27,20 +27,13 @@ func runModifyUS(cmd *cobra.Command, args []string) error {
 	}
 
 	// Affectation description
-	if len(args)>1 {
-		var s string
-		for i := 1; i < len(args); i++ {
-			s += args[i] + " "
-		}
-		u.Description = s
+	if newStoryDescription != "" {
+		u.Description = newStoryDescription
 	}
 
 	// Mise à jour des champs selon flags
 	if newEffort != -1{
 		u.Effort = newEffort
-	}
-	if newName != "" {
-		u.Name = newName
 	}
 
 	//Update en BDD de la US
@@ -54,7 +47,7 @@ func runModifyUS(cmd *cobra.Command, args []string) error {
 
 // Var Cobra décrivant une commande CLI modifiant une UserStory
 var userStoryModifyCmd = &cobra.Command{
-	Use:     "modify [<id>] <description>[...]",
+	Use:     "modify [<id>]",
 	Short:   "Modify a UserStory from its Id.",
 	Args:	 cobra.MinimumNArgs(1),
 	RunE:    runModifyUS,
@@ -68,7 +61,7 @@ func init() {
 	userStoryModifyCmd.Flags().IntVarP(&newEffort, "effort", "e", -1,
 		"Provide a new effort value to the User Story",
 	)
-	userStoryModifyCmd.Flags().StringVarP(&newName, "name", "n", "",
-		"Provide a new name to the User Story",
+	userStoryModifyCmd.Flags().StringVarP(&newStoryDescription, "description", "d", "",
+	"Provide a new description to the User Story\nDescription have to be between quotation marks.\nExample : \"My Beautiful description\"",
 	)
 }
