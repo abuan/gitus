@@ -2,9 +2,10 @@ package project
 
 import (
 	"fmt"
-	"time"
-	"github.com/abuan/gitus/userstory"
 	"strconv"
+	"time"
+
+	"github.com/abuan/gitus/userstory"
 )
 
 // Project : un projet contient contient un id,
@@ -13,15 +14,16 @@ type Project struct {
 	ID            int
 	Name          string
 	Description   string
+	Author        string
 	CreationDate  time.Time
 	ListUserStory []userstory.UserStory
 }
 
 //NewProject : constructeur de Projet, implémente automatiquement la fonction projet
-func NewProject(name, description string) Project {
+func NewProject(name, description, author string) Project {
 	t := time.Now()
 	t.Format("2006-01-02 15:04:05")
-	return Project{0, name, description, t,nil}
+	return Project{0, name, description, author, t, nil}
 }
 
 //modifier le nom du projet
@@ -61,16 +63,17 @@ func (p *Project) deleteUserStory(u userstory.UserStory) {
 //Display : afficher un projet entier
 func (p *Project) Display(usList []int) {
 	fmt.Println("\n**************************************** Project ****************************************")
-	fmt.Println("\tId:\t\t"+strconv.Itoa(p.ID))
-	fmt.Println("\tName :\t\t"+p.Name)
-	fmt.Println("\tDescription :\t"+p.Description)
-	fmt.Println("\tCreation Date :\t"+p.CreationDate.Format("2006-01-02 15:04:05")+"\n")
+	fmt.Println("\tId:\t\t" + strconv.Itoa(p.ID))
+	fmt.Println("\tName :\t\t" + p.Name)
+	fmt.Println("\tDescription :\t" + p.Description)
+	fmt.Println("\tAuthor :\t" + p.Author)
+	fmt.Println("\tCreation Date :\t" + p.CreationDate.Format("2006-01-02 15:04:05") + "\n")
 	fmt.Print("\tLinked User Story (id) :\t")
-	if len(usList)>0{
-		for _,value := range usList{
-			fmt.Print(strconv.Itoa(value)+" / ")
+	if len(usList) > 0 {
+		for _, value := range usList {
+			fmt.Print(strconv.Itoa(value) + " / ")
 		}
-	}else{
+	} else {
 		fmt.Println("No User Story link to this project")
 	}
 }
