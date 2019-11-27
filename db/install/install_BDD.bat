@@ -1,7 +1,5 @@
 @ECHO OFF
-ECHO Creation de la base de donnee "gitus" et de ses tables 
-ECHO Veuillez rentrer le mdp MySQL de l'utilisateur "root"
-mysql --user=root --password -s < setup_database.sql
-ECHO La base de donnee a ete correctement instalee
+ECHO Creation de la base de donnee "gitus" avec SQLite et de ses tables 
+sqlite3 C:\sqlite\gitus.db < setup_database.sql
 @ECHO ON
 pause
