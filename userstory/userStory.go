@@ -59,7 +59,7 @@ func NewUserStory(description, author string, effort int) UserStory {
 	t := time.Now()
 	t.Format("2006-01-02 15:04:05")
 	title := namesgenerator.GetRandomName(0);
-	return UserStory{title, description,.author, 0, effort, t, nil, nil}
+	return UserStory{title, description, author, 0, effort, t, nil, nil}
 }
 
 // Display : Affiche le contenu de la US sur le terminal

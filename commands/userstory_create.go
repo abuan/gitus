@@ -16,7 +16,7 @@ var (
 
 //Fonction créant une userstory à partir des arguments de la CLI
 func runCreateUS(cmd *cobra.Command, args []string) error {
-	us := userstory.NewUserStory(addDescription,addEffort,AddAuthor)
+	us := userstory.NewUserStory(addDescription,addAuthor,addEffort)
 
 	//Sauvegarde en BDD
 	err := db.InitDB()
