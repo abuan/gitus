@@ -8,7 +8,7 @@ import (
 )
 
 // Affiche la liste des US Gitus dans la CLI
-func runListUS(cmd *cobra.Command, args []string) error {
+func runLsUS(cmd *cobra.Command, args []string) error {
 	//Récupération de la liste des Project en BDD
 
 	usList, err := db.TaskGetAllUserStory()
@@ -27,15 +27,15 @@ func runListUS(cmd *cobra.Command, args []string) error {
 }
 
 // Var Cobra décrivant une commande CLI affichant la liste des US Gitus
-var userStoryListCmd = &cobra.Command{
-	Use:      "list",
+var userStoryLsCmd = &cobra.Command{
+	Use:      "ls",
 	Short:    "Display a list of all the Gitus US.",
 	Args:     cobra.NoArgs,
-	RunE:     runListUS,
+	RunE:     runLsUS,
 	PreRunE:  connexionForData,
 	PostRunE: deconnexionForData,
 }
 
 func init() {
-	userStoryCmd.AddCommand(userStoryListCmd)
+	userStoryCmd.AddCommand(userStoryLsCmd)
 }

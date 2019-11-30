@@ -7,7 +7,7 @@ import (
 )
 
 // Affiche le contenu d'une US dans la CLI
-func runDisplayUS(cmd *cobra.Command, args []string) error {
+func runInspectUS(cmd *cobra.Command, args []string) error {
 	//Récupération de la US en BDD via ID
 	id, _ := strconv.Atoi(args[0])
 	u, err := db.TaskGetUserStory(id)
@@ -22,15 +22,15 @@ func runDisplayUS(cmd *cobra.Command, args []string) error {
 }
 
 // Var Cobra décrivant une commande CLI modifiant une UserStory
-var userStoryDisplayCmd = &cobra.Command{
-	Use:      "display [<id>]",
+var userStoryInspectCmd = &cobra.Command{
+	Use:      "inspect [<id>]",
 	Short:    "Display a UserStory content from its Id.",
 	Args:     cobra.MinimumNArgs(1),
-	RunE:     runDisplayUS,
+	RunE:     runInspectUS,
 	PreRunE:  connexionForData,
 	PostRunE: deconnexionForData,
 }
 
 func init() {
-	userStoryCmd.AddCommand(userStoryDisplayCmd)
+	userStoryCmd.AddCommand(userStoryInspectCmd)
 }

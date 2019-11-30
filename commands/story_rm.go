@@ -7,7 +7,7 @@ import (
 )
 
 //Fonction supprimant une userstory à partir de l'ID passé dans la CLI
-func runDeleteUS(cmd *cobra.Command, args []string) error {
+func runRmUS(cmd *cobra.Command, args []string) error {
 	//Suppression de la US en BDD via ID
 
 	id, _ := strconv.Atoi(args[0])
@@ -19,15 +19,15 @@ func runDeleteUS(cmd *cobra.Command, args []string) error {
 }
 
 // Var Cobra décrivant une commande CLI supprimant une UserStory
-var userStoryDeleteCmd = &cobra.Command{
-	Use:      "delete [<id>]",
+var userStoryRmCmd = &cobra.Command{
+	Use:      "rm [<id>]",
 	Short:    "Delete a UserStory from its Id.",
 	Args:     cobra.MinimumNArgs(1),
-	RunE:     runDeleteUS,
+	RunE:     runRmUS,
 	PreRunE:  connexionForData,
 	PostRunE: deconnexionForData,
 }
 
 func init() {
-	userStoryCmd.AddCommand(userStoryDeleteCmd)
+	userStoryCmd.AddCommand(userStoryRmCmd)
 }
