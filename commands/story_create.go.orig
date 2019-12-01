@@ -1,0 +1,85 @@
+package commands
+
+import (
+	"github.com/abuan/gitus/db"
+	"github.com/abuan/gitus/userstory"
+	"github.com/spf13/cobra"
+)
+
+// Variable passé au flag --effort stockant la valeur de l'effort attribué
+var (
+	addEffort int
+<<<<<<< HEAD:commands/userstory_create.go
+	addDescription string
+	//flag autheur en global, qui est aussi le même utiliser pour les project
+	addAuthor string
+=======
+>>>>>>> feature/modification_commandes_cobra:commands/story_create.go
+)
+
+//Fonction créant une userstory à partir des arguments de la CLI
+func runCreateUS(cmd *cobra.Command, args []string) error {
+<<<<<<< HEAD:commands/userstory_create.go
+	us := userstory.NewUserStory(addDescription,addAuthor,addEffort)
+
+	//Sauvegarde en BDD
+	err := db.InitDB()
+	defer db.CloseDB()
+	if err != nil {
+		return err
+	}
+	err = db.TaskAddUserStory(&us)
+=======
+	us := userstory.NewUserStory(args[0], "", addEffort)
+
+	// Affectation description
+	var s string
+	for i := 1; i < len(args); i++ {
+		s += args[i] + " "
+	}
+	us.SetDescription(s)
+
+	err := db.TaskAddUserStory(&us)
+>>>>>>> feature/modification_commandes_cobra:commands/story_create.go
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+// Var Cobra décrivant une commande CLI créant une UserStory
+var userStoryCreateCmd = &cobra.Command{
+<<<<<<< HEAD:commands/userstory_create.go
+	Use:     "create",
+	Short: "Create a new UserStory.",
+	Args:	 cobra.NoArgs,
+	RunE:  runCreateUS,
+=======
+	Use:      "create [<name>] <description>[...]",
+	Short:    "Create a new UserStory.",
+	Args:     cobra.MinimumNArgs(2),
+	RunE:     runCreateUS,
+	PreRunE:  connexionForData,
+	PostRunE: deconnexionForData,
+>>>>>>> feature/modification_commandes_cobra:commands/story_create.go
+}
+
+func init() {
+	userStoryCmd.AddCommand(userStoryCreateCmd)
+
+	userStoryCreateCmd.Flags().SortFlags = false
+
+	userStoryCreateCmd.Flags().IntVarP(&addEffort, "effort", "e", 0,
+		"Provide an effort to the User Story",
+	)
+<<<<<<< HEAD:commands/userstory_create.go
+	userStoryCreateCmd.Flags().StringVarP(&addDescription, "description", "d", "No description so far",
+		"Provide a description to the User Story\nDescription have to be between quotation marks.\nExample : \"My Beautiful description\"",
+	)
+	userStoryCreateCmd.Flags().StringVarP(&addAuthor, "author", "a", "unknow",
+		"Provide an author to the User Story",
+	)
+
+=======
+>>>>>>> feature/modification_commandes_cobra:commands/story_create.go
+}

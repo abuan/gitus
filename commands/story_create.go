@@ -18,13 +18,14 @@ var (
 func runCreateUS(cmd *cobra.Command, args []string) error {
 	us := userstory.NewUserStory(addDescription,addAuthor,addEffort)
 
-	//Sauvegarde en BDD
-	err := db.InitDB()
-	defer db.CloseDB()
-	if err != nil {
-		return err
+	// Affectation description
+	var s string
+	for i := 1; i < len(args); i++ {
+		s += args[i] + " "
 	}
-	err = db.TaskAddUserStory(&us)
+	us.SetDescription(s)
+
+	err := db.TaskAddUserStory(&us)
 	if err != nil {
 		return err
 	}
@@ -33,10 +34,12 @@ func runCreateUS(cmd *cobra.Command, args []string) error {
 
 // Var Cobra décrivant une commande CLI créant une UserStory
 var userStoryCreateCmd = &cobra.Command{
-	Use:     "create",
-	Short: "Create a new UserStory.",
-	Args:	 cobra.NoArgs,
-	RunE:  runCreateUS,
+	Use:      "create [<name>] <description>[...]",
+	Short:    "Create a new UserStory.",
+	Args:     cobra.MinimumNArgs(2),
+	RunE:     runCreateUS,
+	PreRunE:  connexionForData,
+	PostRunE: deconnexionForData,
 }
 
 func init() {
