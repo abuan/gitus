@@ -23,8 +23,8 @@ func runListProjects(cmd *cobra.Command, args []string) error {
 
 	// Affichage dans la CLI
 	fmt.Println("\n*************** Project List ***************")
-	fmt.Println("\tID\tName\tAuthor")
-	fmt.Println("\t--\t----")
+	fmt.Println("\tID\tName\t\t\tAuthor")
+	fmt.Println("\t--\t----\t\t\t-------")
 	for _, p := range pList {
 		fmt.Println("\t" + strconv.Itoa(p.ID) + "\t" + p.Name + "\t" + p.Author)
 	}
