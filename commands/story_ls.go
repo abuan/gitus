@@ -2,9 +2,10 @@ package commands
 
 import (
 	"fmt"
+	"strconv"
+
 	"github.com/abuan/gitus/db"
 	"github.com/spf13/cobra"
-	"strconv"
 )
 
 // Affiche la liste des US Gitus dans la CLI
@@ -21,7 +22,7 @@ func runLsUS(cmd *cobra.Command, args []string) error {
 	fmt.Println("\tID\tEffort\tName")
 	fmt.Println("\t--\t------\t----")
 	for _, u := range usList {
-		fmt.Println("\t" + strconv.Itoa(u.ID) + "\t" + strconv.Itoa(u.Effort) + "\t" + u.Name)
+		fmt.Println("\t" + strconv.Itoa(u.ID) + "\t" + strconv.Itoa(u.Effort) + "\t" + u.Title)
 	}
 	return nil
 }
