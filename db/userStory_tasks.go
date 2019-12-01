@@ -64,7 +64,7 @@ func TaskGetUserStoryList(ids []int) ([]*userstory.UserStory, error) {
 	//Création de la slice des US
 	usList := make([]*userstory.UserStory, len(ids))
 	// Preparation de la query pour récupérer toutes les US matchant les ids en param
-	stmt, err := db.Prepare("SELECT title,descript,creation_date,effort FROM UserStory WHERE id in(?" + strings.Repeat(",?", len(args)-1) + ")")
+	stmt, err := db.Prepare("SELECT title,descript,creation_date,author,effort FROM UserStory WHERE id in(?" + strings.Repeat(",?", len(args)-1) + ")")
 	if err != nil {
 		return nil, err
 	}
@@ -82,7 +82,7 @@ func TaskGetUserStoryList(ids []int) ([]*userstory.UserStory, error) {
 		//Création d'une US
 		u := userstory.UserStory{ID: ids[i]}
 		//Scan des résultat du Row
-		err = rows.Scan(&u.Title, &u.Description, &u.CreationDate, &u.Effort)
+		err = rows.Scan(&u.Title, &u.Description, &u.CreationDate, &u.Author, &u.Effort)
 		if err != nil {
 			return nil, err
 		}
