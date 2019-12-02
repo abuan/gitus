@@ -2,9 +2,10 @@ package commands
 
 import (
 	"fmt"
+	"strconv"
+
 	"github.com/abuan/gitus/db"
 	"github.com/spf13/cobra"
-	"strconv"
 )
 
 // Affiche la liste des Project Gitus dans la CLI
@@ -18,10 +19,10 @@ func runLsProjects(cmd *cobra.Command, args []string) error {
 
 	// Affichage dans la CLI
 	fmt.Println("\n*************** Project List ***************")
-	fmt.Println("\tID\tName")
+	fmt.Println("\tID\tName\tAuthor")
 	fmt.Println("\t--\t----")
 	for _, p := range pList {
-		fmt.Println("\t" + strconv.Itoa(p.ID) + "\t" + p.Name)
+		fmt.Println("\t" + strconv.Itoa(p.ID) + "\t" + p.Name + "\t" + p.Author)
 	}
 	return nil
 }
