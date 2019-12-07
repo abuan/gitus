@@ -3,7 +3,7 @@ package userstory
 import (
 	"fmt"
 	"strconv"
-	"github.com/docker/docker/pkg/namesgenerator"
+	"github.com/abuan/gitus/namesgenerator"
 	"time"
 	"github.com/abuan/gitus/task"
 )
