@@ -19,7 +19,7 @@ func runLsUS(cmd *cobra.Command, args []string) error {
 
 	// Affichage dans la CLI
 	fmt.Println("\n*************** User Story List ***************")
-	fmt.Println("\tID\tEffort\tName")
+	fmt.Println("\tID\tEffort\tTitle")
 	fmt.Println("\t--\t------\t----")
 	for _, u := range usList {
 		fmt.Println("\t" + strconv.Itoa(u.ID) + "\t" + strconv.Itoa(u.Effort) + "\t" + u.Title)
