@@ -197,3 +197,28 @@ func TaskGetAllUserStory() ([]*userstory.UserStory, error) {
 	}
 	return usList, nil
 }
+
+// TaskLinkProjectsToUS : Lie des projets à une US
+func TaskLinkProjectsToUS(usID int, projectIDs [] int) error {
+	// Query string to be completed
+	sqlStr := "INSERT INTO Project_structure(project_id,userstory_id) VALUES "
+	// Création et remplissage du tableau des couples (project_id,userstory_id)
+	vals := []interface{}{}
+	for _, projectID := range projectIDs {
+		sqlStr += "(?,?),"
+		vals = append(vals, projectID, usID)
+	}
+	//Supprime la dernière ,
+	sqlStr = strings.TrimSuffix(sqlStr, ",")
+	// Insert dans la table l'ensemble des couples de valeurs
+	stmt, err := db.Prepare(sqlStr)
+	if err != nil {
+		return err
+	}
+	defer stmt.Close()
+	_, err = stmt.Exec(vals...)
+	if err != nil {
+		return err
+	}
+	return nil
+}
