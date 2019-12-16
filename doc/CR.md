@@ -55,17 +55,31 @@ cf site https://git-scm.com/book/en/v2/Distributed-Git-Distributed-Workflows
 
 Gagner si on fait synchro entre deux repo
 
-
 ### 3 possibilités de chemin à prendre : 
 1. participer à un logiciel opensource en travaillant en collaboration avec Git bug ==> exercice pas adapté, collaboration difficile 
 2. forker et repartir de sa base, faire evoluer la chose en fonction du besoin ==> semble plus réalisable (en citant merci à nanani)
-3. coder notre propre logiciel
+3. coder notre propre logiciel 
 
 ### US du sprint prochain
 - définir le workflow (défini par la clé, le réseau)
 - étudier les possibilités de git bug
 - essayer de gérer la gestion de conflits entre deux fichiers distants
 - faire un graphique pour exprimer clairement le besoin
+
+## 16/12
+
+### Remarques sur schéma
+Faire apparaitre que PO ont aussi un PC vert
+sqlite plus léger pour transfert par clé, 
+Intégrer tyga et fichier excel 
+
+### Solutions plosibles
+Passer de PC fixe à PC portable pour avoir dépôt distant commun au BO et PO
+BO, juste a push
+PO, mettre sur clé et eux qui font le transfert par clé à chaque fois modif dans les deux sens
+Règle : si pas synchro sur réseau fixe de PO avant, pas possible de push vers réseau distant
+Clé = repo, push et pull qu'on peut faire à partir de la clé
+
 
 
 
