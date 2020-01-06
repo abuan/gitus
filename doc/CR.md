@@ -80,6 +80,14 @@ PO, mettre sur clé et eux qui font le transfert par clé à chaque fois modif d
 Règle : si pas synchro sur réseau fixe de PO avant, pas possible de push vers réseau distant
 Clé = repo, push et pull qu'on peut faire à partir de la clé
 
+## 06/01
+
+- Git bug = limites de la solution
+
+- approfondir distributed workflow (variantes possibles, solution github/gitlab)
+
+- présentation de la solution (modèle sélectionné, tests de faisabilité)
+
 
 
 
