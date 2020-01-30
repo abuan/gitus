@@ -11,7 +11,7 @@ Il faut mettre à jour le diagramme des données pour qu'il corresponde au nom d
 
 3. Création de userStory par ligne de commande à coder :
 l'objectif de la séance prochaine est de se familiariser chacun de notre côté avec cobra puis de coder toutes les lignes de commandes définies. 
-Pour cela s'inspirer de https://github.com/MichaelMure/git-bug.
+Pour cela s'inspirer de https://github.com/abuan/gitus.
 Créer un fichier lignedecommande.go par ligne de commande dans fichier commands.
 Il ne faut pas oublier de mettre à jour le trello en ajoutant son nom à une tâche pour ne pas travailler en doublon.
 
