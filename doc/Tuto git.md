@@ -18,3 +18,7 @@
 2. clique droit "charger la branche"
 3. faire un pullp pour se mettre à jour avec les info à distance
 4. créer une nouvelle branche
+
+## Que faire en attendant que la pull request soit accepté et qu'il y a une dépendance avec la suite
+1. Créer une nouvelle branche à partir de la feature qui est en attente d'être merge.
+2. Quand la merge est faite, rebase la nouvelle feature sur develop
