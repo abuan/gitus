@@ -4,6 +4,7 @@ package commands
 import (
 	"fmt"
 	"os"
+	"github.com/pkg/errors"
 
 	"github.com/spf13/cobra"
 
@@ -16,6 +17,10 @@ const rootCommandName = "gitus"
 
 // package scoped var to hold the repo after the PreRun execution
 var repo repository.ClockedRepo
+
+var ErrNoIdentitySet = errors.New("No identity is set.\n" +
+	"To interact with stories, an identity first needs to be created using " +
+	"\"gitus user create\"")
 
 // RootCmd represents the base command when called without any subcommands
 var RootCmd = &cobra.Command{
@@ -74,6 +79,18 @@ func loadRepoEnsureUser(cmd *cobra.Command, args []string) error {
 	err := loadRepo(cmd, args)
 	if err != nil {
 		return err
+	}
+	
+	// GetUserIdentity(repo) retourne un message d'erreur indiquant une commande git bug à utiliser pour 
+	// résoudre le problème en cas d'une identité non créée. 
+	//Les lignes suivantes permettent de capter l'erreur afin d'afficher la commande propre à gitus
+	configs, err := repo.LocalConfig().ReadAll("git-bug.identity")
+	if err != nil {
+		return err
+	}
+
+	if len(configs) == 0 {
+		return ErrNoIdentitySet
 	}
 
 	_, err = identity.GetUserIdentity(repo)
